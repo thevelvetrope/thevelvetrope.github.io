@@ -1,13 +1,89 @@
-* {
-    background-color: #000000;
+:root {
+    --measure: 62ch;    
+    --rhythm: 1.5rem;
+    --session: 120;
+
+    --ground: #000000;
+    --figure: #ffffff;
+    --accent: #e8dbff;
+    --rule: #333333;
+    --font-body: Georgia, "Times New Roman", serif;
+    --font-data: ui-monospace, "Courier New", monospace;
 }
 
-h1 {
-    color: #e8dbff;
+*,
+*::before,
+*::after {
+    box-sizing: border-box; 
 }
 
 body {
-    background-color: #000000;
-    color: #ffffff;
-    text-align: center;
+    background-color: var(--ground);
+    color: var(--figure);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    padding: calc(var(--rhythm) * 2) var(--rhythm);
+}
+
+a {
+    color: var(--accent);
+}
+
+
+header,
+nav,
+main,
+footer {
+    max-inline-size: var(--measure);
+    margin-inline: auto;
+}
+
+section {
+    margin-block-end: calc(var(--rhythm) * 3);  
+}
+
+p {
+    margin-block-end: var(--rhythm);
+}
+
+.prompts {
+    font-family: var(--font-data);
+    font-size: 0.8rem;
+    color: var(--accent);
+}
+
+
+.log {
+    list-style: none;
+    background-image: repeating-linear-gradient(
+        to right,
+        var(--rule) 0,
+        var(--rule) 1px,
+        transparent 1px,
+        transparent 25%
+    );
+}
+
+.log li {
+    position: relative;             
+    padding-block-start: 1em;    
+    margin-block-end: 0.5rem;
+    font-family: var(--font-data);
+    font-size: 0.75rem;
+}
+
+.log li::before {
+    content: "";
+    position: absolute;
+    inset-block-start: 0;
+    inset-inline-start: calc(var(--start) / var(--session) * 100%);
+    inline-size: calc(var(--dur) / var(--session) * 100%);
+    min-inline-size: 2px;
+    block-size: 0.5em;
+    background-color: var(--accent);
+}
+
+.log time {
+    font-weight: bold;
+    margin-inline-end: 0.5ch;
 }
